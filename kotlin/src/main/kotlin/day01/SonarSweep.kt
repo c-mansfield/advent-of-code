@@ -6,6 +6,7 @@ class SonarSweep {
     fun depthIncreases(depths: List<Int>, windowSize: Int): Int {
         return depths
             .windowed(size = windowSize, transform = List<Int>::sum)
+            .windowed(windowSize, 1, transform = List<Int>::sum)
             .zipWithNext()
             .count{ (previous, current) -> previous < current }
     }

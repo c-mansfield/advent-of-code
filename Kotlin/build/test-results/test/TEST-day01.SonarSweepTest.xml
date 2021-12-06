@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="day01.SonarSweepTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-05T16:05:52" hostname="AT-ALYZMD6M" time="0.021">
-  <properties/>
-  <testcase name="part2_testExample()" classname="day01.SonarSweepTest" time="0.021"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
