@@ -4,8 +4,8 @@ import utils.readFileByLine
 
 class HydrothermalVenture {
     fun findOverlaps(input: List<String>, part: Int): Int {
-        var lines: MutableList<Line> = parseLines(input).toMutableList()
-        var allLinePoints: MutableList<Pair<Int,Int>> = mutableListOf()
+        val lines: MutableList<Line> = parseLines(input).toMutableList()
+        val allLinePoints: MutableList<Pair<Int,Int>> = mutableListOf()
 
         lines.forEach {
             if(part == 2 || (it.p1.first == it.p2.first || it.p1.second == it.p2.second))
@@ -15,21 +15,20 @@ class HydrothermalVenture {
         return countOverlaps(allLinePoints)
     }
 
-    fun countOverlaps(allLinePoints: List<Pair<Int,Int>>): Int {
+    private fun countOverlaps(allLinePoints: List<Pair<Int,Int>>): Int {
         return allLinePoints
             .groupingBy { it }
             .eachCount()
-            .filter { it.value > 1 }.values
-            .size
+            .count { it.value > 1 }
     }
 
-    fun parseLines(input: List<String>): List<Line> {
-        var lines: MutableList<Line> = mutableListOf()
+    private fun parseLines(input: List<String>): List<Line> {
+        val lines: MutableList<Line> = mutableListOf()
 
         input.forEach {
-            var coords: List<String> = it.split(" -> ")
-            var p1: List<String> = coords[0].split(",")
-            var p2: List<String> = coords[1].split(",")
+            val coords: List<String> = it.split(" -> ")
+            val p1: List<String> = coords[0].split(",")
+            val p2: List<String> = coords[1].split(",")
 
             lines.add(Line(Pair(p1[0].toInt(), p1[1].toInt()), Pair(p2[0].toInt(), p2[1].toInt())))
         }
@@ -41,7 +40,7 @@ class HydrothermalVenture {
 data class Line(val p1: Pair<Int, Int>, val p2: Pair<Int, Int>) {
     val points: List<Pair<Int, Int>> = getLinePoints()
 
-    fun getLinePoints(): List<Pair<Int, Int>> {
+    private fun getLinePoints(): List<Pair<Int, Int>> {
         val linePoints: MutableList<Pair<Int, Int>> = mutableListOf()
         val xDistance: Int = Math.max(p1.first, p2.first) - Math.min(p1.first, p2.first)
         val yDistance: Int = Math.max(p1.second, p2.second) - Math.min(p1.second, p2.second)
