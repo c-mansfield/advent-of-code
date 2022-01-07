@@ -1,11 +1,11 @@
-package day02
+package day04
 
 import utils.readFileByLine
 
 class GiantSquid {
     fun calculateScores(bingoInput: List<String>, part: Int): Int {
         val drawnNumbers: List<String> = bingoInput[0].split(',')
-        var boards: List<Board> = parseBoards(bingoInput.subList(2, bingoInput.size))
+        val boards: List<Board> = parseBoards(bingoInput.subList(2, bingoInput.size))
 
         if(part == 1) {
             return calculateWinningScore(drawnNumbers, boards)
@@ -15,20 +15,20 @@ class GiantSquid {
     }
 
     private fun calculateWinningScore(drawnNumbers: List<String>, boards: List<Board>): Int {
-        var winner: Pair<Int, Board> = findWinningBoard(drawnNumbers, boards)
+        val winner: Pair<Int, Board> = findWinningBoard(drawnNumbers, boards)
 
         return winner.first * winner.second.calculateUnmarked()
     }
 
     private fun calculateLosingScore(drawnNumbers: List<String>, boards: List<Board>): Int {
-        var loser: Pair<Int, Board> = findLosingBoard(drawnNumbers, boards)
+        val loser: Pair<Int, Board> = findLosingBoard(drawnNumbers, boards)
 
         return loser.first * loser.second.calculateUnmarked()
     }
 
     private fun parseBoards(bingoInput: List<String>): List<Board> {
-        var blanksCount: Int = bingoInput.count { it.isEmpty() }
-        var boardSize: Int = (bingoInput.size - blanksCount) / (blanksCount + 1)
+        val blanksCount: Int = bingoInput.count { it.isEmpty() }
+        val boardSize: Int = (bingoInput.size - blanksCount) / (blanksCount + 1)
 
         return bingoInput
             .filter{ !it.isEmpty() }
@@ -52,7 +52,7 @@ class GiantSquid {
     }
 
     private fun findLosingBoard(drawnNumbers: List<String>, boards: List<Board>): Pair<Int, Board> {
-        var boardsCopy: MutableList<Board> = mutableListOf()
+        val boardsCopy: MutableList<Board> = mutableListOf()
 
         for(d in drawnNumbers) {
             for(b in boards) {

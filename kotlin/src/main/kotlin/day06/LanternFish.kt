@@ -14,14 +14,13 @@ class LanternFish {
     }
 
     private fun initiateFishArray(input: List<String>): LongArray {
-        val fish = LongArray(9)
         val initialInputs: List<Int> = input[0].split(',').map { it.toInt() }
 
-        initialInputs.forEach {
-            fish[it] += 1L
+        return LongArray(9).apply {
+            initialInputs.forEach {
+                this[it] += 1L
+            }
         }
-
-        return fish
     }
 
     private fun simulateDayStep(fish: LongArray): LongArray {

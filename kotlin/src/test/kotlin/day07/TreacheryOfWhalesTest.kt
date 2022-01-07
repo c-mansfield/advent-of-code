@@ -2,7 +2,6 @@ package day07
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import day02.GiantSquid
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

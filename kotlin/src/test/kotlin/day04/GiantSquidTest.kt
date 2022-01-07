@@ -1,13 +1,12 @@
-package day03
+package day04
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import day02.GiantSquid
-import org.junit.jupiter.api.Assertions.*
+import day04.GiantSquid
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class GiantSquid {
+internal class GiantSquidTest {
     private lateinit var testSubject: GiantSquid
 
     private var TEST_INPUTS: List<String> = listOf("7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1",
