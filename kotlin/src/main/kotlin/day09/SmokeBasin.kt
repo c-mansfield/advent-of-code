@@ -1,24 +1,24 @@
 package day09
 
-import utils.readFileByLine
+import utils.*
 
 class SmokeBasin {
     fun calculateLowPointRisk(input: List<String>): Int {
-        val heatmap: List<Coordinate> = parseInput(input)
+        val heatmap: Grid = parseGrid(input)
         return getLowPoints(heatmap).sumOf { it.value + 1 }
     }
 
-    fun getLowPoints(heatmap: List<Coordinate>): MutableList<Coordinate> {
+    fun getLowPoints(heatmap: Grid): MutableList<Coordinate> {
         return mutableListOf<Coordinate>().apply {
-            heatmap.forEach { current ->
-                if(current.getAdjacentCoordinates(heatmap).all { it.value > current.value })
+            heatmap.coordinates.forEach { current ->
+                if(heatmap.getAdjacentCoords(current, false).all { it.value > current.value })
                     this.add(current)
             }
         }
     }
 
     fun calculateLargestBasins(input: List<String>): Int {
-        val heatmap: List<Coordinate> = parseInput(input)
+        val heatmap: Grid = parseGrid(input)
         val basins: MutableList<Int> = mutableListOf()
         val basinStarts: MutableList<Coordinate> = getLowPoints(heatmap)
 
@@ -29,7 +29,7 @@ class SmokeBasin {
         return basins.sorted().takeLast(3).reduce { acc, i -> acc * i }
     }
 
-    fun getBasinSize(heatmap: List<Coordinate>, startPoint: Coordinate): Int {
+    fun getBasinSize(heatmap: Grid, startPoint: Coordinate): Int {
         var basinSize = 1
         var evaluating: MutableList<Coordinate> = mutableListOf(startPoint)
         val visited: MutableList<Coordinate> = mutableListOf()
@@ -38,10 +38,10 @@ class SmokeBasin {
             val tempBasins: MutableList<Coordinate> = mutableListOf()
 
             evaluating.forEach {
-                it.getAdjacentCoordinates(heatmap).forEach { coord ->
-                    if(coord.value != 9 && coord !in visited && coord !in tempBasins) {
+                heatmap.getAdjacentCoords(it, false).forEach { coordinate ->
+                    if(coordinate.value != 9 && coordinate !in visited && coordinate !in tempBasins) {
                         basinSize++
-                        tempBasins.add(coord)
+                        tempBasins.add(coordinate)
                     }
                 }
             }
@@ -53,26 +53,6 @@ class SmokeBasin {
 
         return basinSize
     }
-
-    fun parseInput(input: List<String>): List<Coordinate> {
-        return input.mapIndexed() { y, it ->
-            it.toCharArray().mapIndexed { x, value ->
-                Coordinate(x,input.size-1-y,value.toString().toInt())
-            }
-        }.flatten()
-    }
-}
-
-data class Coordinate(val x: Int, val y: Int, val value: Int) {
-    fun getAdjacentCoordinates(heatmap: List<Coordinate>): MutableList<Coordinate> {
-        return mutableListOf<Coordinate>().apply {
-            heatmap.find { x - 1 == it.x && y == it.y }?.let { this.add(it) }
-            heatmap.find { x + 1 == it.x && y == it.y }?.let { this.add(it) }
-            heatmap.find { x == it.x && y - 1 == it.y }?.let { this.add(it) }
-            heatmap.find { x == it.x && y + 1 == it.y }?.let { this.add(it) }
-        }
-    }
-
 }
 
 fun main() {
