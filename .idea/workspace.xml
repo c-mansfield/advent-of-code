@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00e1759d-0bb8-4bae-bdcd-791717858f2c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/22/python/day02/day02.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/22/python/day02/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/22/python/day03/day03.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/22/python/day03/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +28,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -57,7 +59,8 @@
       <workItem from="1669999287127" duration="521000" />
       <workItem from="1670236566214" duration="4034000" />
       <workItem from="1670416403323" duration="1810000" />
-      <workItem from="1671112637378" duration="1697000" />
+      <workItem from="1671112637378" duration="2285000" />
+      <workItem from="1671198707543" duration="5619000" />
     </task>
     <task id="LOCAL-00001" summary="Restructure to seperate out 2021">
       <created>1669999505736</created>
