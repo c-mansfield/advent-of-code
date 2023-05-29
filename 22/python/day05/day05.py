@@ -1,4 +1,6 @@
 import collections
+import copy
+
 
 def build_stacks(initial):
     stacks_dict = collections.defaultdict(list)
@@ -11,8 +13,7 @@ def build_stacks(initial):
     return stacks_dict
 
 
-def rearrange(stacks, instructions, upgraded_crane):
-    rearranged_stack = stacks.copy()
+def rearrange(rearranged_stack, instructions, upgraded_crane):
     for instruction in instructions:
         items, initialRow, endRow = [int(i) for i in instruction.split(" ") if i.isnumeric()]
         rearranged_stack[endRow][:0] = rearranged_stack[initialRow][:items] if upgraded_crane else list(reversed(rearranged_stack[initialRow][:items]))
@@ -26,8 +27,12 @@ def find_top_crates(rearranged_stacks):
     return ''.join(top_crates)
 
 
-input = open("day05/input.txt", "r").read().split('\n')
-stacks, instructions = build_stacks(input[:input.index('')]), list(filter(None, input[input.index(''):]))
+def main():
+    input = open("day05/input.txt", "r").read().split('\n')
+    stacks, instructions = build_stacks(input[:input.index('')]), list(filter(None, input[input.index(''):]))
 
-print("Part 1: ", find_top_crates(rearrange(stacks, instructions, False)))
-print("Part 2: ", find_top_crates(rearrange(stacks, instructions, True)))
+    print("Part 1: ", find_top_crates(rearrange(copy.deepcopy(stacks), instructions, False)))
+    print("Part 2: ", find_top_crates(rearrange(copy.deepcopy(stacks), instructions, True)))
+
+
+main()
