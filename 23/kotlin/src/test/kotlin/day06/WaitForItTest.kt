@@ -5,7 +5,7 @@ import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 
-class WaitForItTest {
+internal class WaitForItTest {
     private val TEXT_INPUTS = listOf(
         "Time:      7  15   30", "Distance:  9  40  200"
     )

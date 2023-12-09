@@ -16,26 +16,20 @@ class Trebuchet {
         "nine" to "9"
     )
 
-    fun findCalibration(document: List<String>): Int {
-        return document
+    fun findCalibration(document: List<String>): Int = document
             .map { it.filter { line -> line.isDigit() } }
             .sumOf { getLineCalibration(it) }
-    }
 
-    fun findCalibrationWithWrittenLetters(document: List<String>): Int {
-       return document
+    fun findCalibrationWithWrittenLetters(document: List<String>): Int = document
            .map { replaceWrittenLetters(it) }
            .sumOf { getLineCalibration(it) }
-    }
 
     private fun getLineCalibration(line: String) = "${line.first()}${line.last()}".toInt()
 
-    private fun replaceWrittenLetters(calibration: String): String {
-        return numbers.keys
+    private fun replaceWrittenLetters(calibration: String): String = numbers.keys
             .filter { calibration.contains(it) }
             .fold(calibration) { acc, s -> acc.replace(s, "${s.first()}${numbers[s].toString()}${s.last()}") }
             .filter { it.isDigit() }
-    }
 }
 
 fun main() {
