@@ -4,9 +4,7 @@ import utils.readFileByLine
 
 data class Wasteland(val instructions: List<Char>, val nodes: Map<String, Pair<String, String>>) {
     tailrec fun traverse(current: Set<String>, direction: Int, count: Int): Int {
-        if (current.all { it.endsWith('Z') }) {
-            return count
-        }
+        if (current.all { it.endsWith('Z') }) return count
 
         val next = current.map {
             val currentNode = nodes.getValue(it)
