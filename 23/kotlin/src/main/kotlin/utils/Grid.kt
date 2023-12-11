@@ -1,15 +1,18 @@
 package utils
 
 data class Grid(val coordinates: List<Coordinate>) {
-    fun getAdjacentCoords(coordinate: Coordinate): List<Coordinate> = mutableListOf<Coordinate>().apply {
+    fun getAdjacentCoords(coordinate: Coordinate, diagonals: Boolean = false): List<Coordinate> = mutableListOf<Coordinate>().apply {
             coordinates.find { coordinate.x - 1 == it.x && coordinate.y == it.y }?.let { this.add(it) }
             coordinates.find { coordinate.x + 1 == it.x && coordinate.y == it.y }?.let { this.add(it) }
             coordinates.find { coordinate.x == it.x && coordinate.y - 1 == it.y }?.let { this.add(it) }
             coordinates.find { coordinate.x == it.x && coordinate.y + 1 == it.y }?.let { this.add(it) }
-            coordinates.find { coordinate.x + 1 == it.x && coordinate.y + 1 == it.y }?.let { this.add(it) }
-            coordinates.find { coordinate.x + 1 == it.x && coordinate.y - 1 == it.y }?.let { this.add(it) }
-            coordinates.find { coordinate.x - 1 == it.x && coordinate.y - 1 == it.y }?.let { this.add(it) }
-            coordinates.find { coordinate.x - 1 == it.x && coordinate.y + 1 == it.y }?.let { this.add(it) }
+
+            if(diagonals) {
+                coordinates.find { coordinate.x + 1 == it.x && coordinate.y + 1 == it.y }?.let { this.add(it) }
+                coordinates.find { coordinate.x + 1 == it.x && coordinate.y - 1 == it.y }?.let { this.add(it) }
+                coordinates.find { coordinate.x - 1 == it.x && coordinate.y - 1 == it.y }?.let { this.add(it) }
+                coordinates.find { coordinate.x - 1 == it.x && coordinate.y + 1 == it.y }?.let { this.add(it) }
+            }
         }
 
     fun getGridCoordinate(x: Int, y: Int) = coordinates.find { x == it.x && y == it.y }

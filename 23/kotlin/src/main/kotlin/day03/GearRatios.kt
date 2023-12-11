@@ -7,7 +7,7 @@ class GearRatios {
         val grid = parseGrid(input)
 
         return grid.coordinates
-             .filter { it.value.isDigit() && grid.getAdjacentCoords(it).any { it.value != '.' && !it.value.isDigit() } }
+             .filter { it.value.isDigit() && grid.getAdjacentCoords(it, true).any { it.value != '.' && !it.value.isDigit() } }
              .map { findNumberCoordinates(grid, it) }
              .distinct()
              .sumOf { it.value }
@@ -19,7 +19,7 @@ class GearRatios {
         return grid.coordinates
             .filter { it.value == '*' }
             .map {
-                grid.getAdjacentCoords(it).filter { it.value.isDigit() }.map { findNumberCoordinates(grid, it) }.distinct()
+                grid.getAdjacentCoords(it, true).filter { it.value.isDigit() }.map { findNumberCoordinates(grid, it) }.distinct()
             }
             .filter { it.size == 2 }
             .sumOf { it.fold(1) { sum, element -> sum * element.value }.toInt() }
