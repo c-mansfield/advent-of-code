@@ -3,25 +3,27 @@ package day01
 import java.io.File
 import kotlin.math.abs
 
+data class Location(val left: Int, val right: Int)
+
 class HistorianHysteria {
     fun part1(input: List<String>): Int = parseLocations(input)
-        .fold(0) { acc, next -> acc + abs(next.first - next.second) }
+        .fold(0) { acc, next -> acc + abs(next.left - next.right) }
 
     fun part2(input: List<String>): Int {
         val locations = parseLocations(input)
-        val secondLocations = locations.map { second -> second.second }
+        val secondLocations = locations.map { second -> second.right }
 
         return locations.sumOf {
-            it.first * (secondLocations.count { second -> second == it.first })
+            it.left * (secondLocations.count { second -> second == it.left })
         }
     }
 
-    private fun parseLocations(input: List<String>): List<Pair<Int, Int>> {
+    private fun parseLocations(input: List<String>): List<Location> {
         val leftLocations = input.map { it.split("   ")[0] }.sorted()
         val rightLocations = input.map { it.split("   ")[1] }.sorted()
 
         return leftLocations.zip(rightLocations).map { (left, right) ->
-            Pair(left.toInt(), right.toInt())
+            Location(left.toInt(), right.toInt())
         }
     }
 }
