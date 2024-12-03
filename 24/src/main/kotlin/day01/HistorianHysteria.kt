@@ -1,7 +1,7 @@
 package day01
 
-import java.io.File
 import kotlin.math.abs
+import utils.readFileByLine
 
 data class Location(val left: Int, val right: Int)
 
@@ -35,5 +35,3 @@ fun main() {
     println("Part 1: " + historianHysteria.part1(locations))
     println("Part 2: " + historianHysteria.part2(locations))
 }
-
-fun readFileByLine(filePath: String): List<String> = File(filePath).readLines()

@@ -1,6 +1,6 @@
 package day02
 
-import java.io.File
+import utils.readFileByLine
 import kotlin.math.abs
 
 data class Report(val level: List<Int>) {
@@ -31,5 +31,3 @@ fun main() {
     println("Part 1: " + redNosedReports.part1(locations))
     println("Part 2: " + redNosedReports.part2(locations))
 }
-
-fun readFileByLine(filePath: String): List<String> = File(filePath).readLines()
